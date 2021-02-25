@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-2">
+            <div class="d-grid gap-2 d-md-block m-1">
+                <h4 class="text-left">Filters</h4>
+                <p>Launch Year</p>
+                <hr>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2006' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2006</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2007' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2007</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2008' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2008</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2009' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2009</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2010' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2010</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2011' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2011</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2012' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2012</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2013' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2013</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2014' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2014</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2015' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2015</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2016' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2016</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2017' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2017</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2018' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2018</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2019' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">2019</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_year: '2020' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">2020</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1 mt-4">
+                <p>Successful Launch</p>
+                <hr>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ launch_success: 'true' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">True</button>
+                <button [routerLink]="[]" [queryParams]="{ launch_success: 'false' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">False</button>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1 mt-4">
+                <p>Successful Landing</p>
+                <hr>
+            </div>
+            <div class="d-grid gap-2 d-md-block m-1">
+                <button [routerLink]="[]" [queryParams]="{ land_success: 'true' }" queryParamsHandling="merge"
+                    class="btn btn-primary" type="button">True</button>
+                <button [routerLink]="[]" [queryParams]="{ land_success: 'false' }" queryParamsHandling="merge"
+                    class="btn btn-primary ml-1" type="button">False</button>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="row">
+                <ng-container *ngIf="data?.length > 0 && loader !== true">
+                    <div class="col-sm-3 mt-1" *ngFor="let launch of data">
+                        <div class="border">
+                            <img src="{{launch.links.mission_patch_small}}" alt="{{launch.mission_name}}"
+                                class="img-fluid p-1">
+                            <p *ngIf="launch.mission_id?.length > 0"><b>Mission Ids:</b></p>
+                            <ul *ngIf="launch.mission_id?.length > 0">
+                                <li class="text-left lipi" *ngFor="let mission of launch.mission_id; index as i">
+                                    {{mission}}</li>
+                            </ul>
+                            <p><b>Launch Year: </b>{{launch.launch_year}}</p>
+                            <p><b>Succesful Launch: </b>{{launch.launch_success}}</p>
+                            <p><b>Successful Landing: </b>-----</p>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="data?.length < 1 && loader !== true">
+                    <div class="col-sm-12 mt-5 text-center">
+                        <p class="mt-5">
+                            <b>No records available.</b>
+                        </p>
+                    </div>
+                </ng-container>
+                <div class="col-sm-12 mt-5" *ngIf="loader === true">
+                    <div class="spinner-border mt-5 text-center" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <p><b>Developed By:</b> Shobhit Shukla</p>
+        </div>
+    </div>
+</div>
